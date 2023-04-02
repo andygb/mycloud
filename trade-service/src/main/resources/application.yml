@@ -5,12 +5,16 @@ server:
 spring:
   application:
     name: tradeService
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
+#基于eurek服务注册发现时，配置eureka服务注册中心地址
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:10086/eureka
 
 
 ribbon:
