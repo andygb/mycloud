@@ -1,0 +1,5 @@
+# Project exclude paths
+/myeureka/target/
+/order-service/target/
+/trade-service/target/
+/user-service/target/

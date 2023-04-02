@@ -1,0 +1,28 @@
+server:
+  port: 8281
+
+
+spring:
+  application:
+    name: tradeService
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+
+ribbon:
+  eureka:
+    enabled: true
+
+#对userService 服务的请求，进行随机 访问，默认是轮询
+userService:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#对orderService 服务的请求，进行 轮询 访问，默认是轮询
+orderService:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
