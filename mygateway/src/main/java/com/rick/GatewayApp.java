@@ -2,19 +2,14 @@ package com.rick;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author shishaofei
- * @since 2023/4/2
+ * @since 2023/4/3
  */
-@EnableFeignClients
 @SpringBootApplication
-public class TradeApp {
-
+public class GatewayApp {
     public static void main(String[] args) {
-        SpringApplication.run(TradeApp.class);
+        SpringApplication.run(GatewayApp.class);
     }
-
-
 }

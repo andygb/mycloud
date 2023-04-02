@@ -16,6 +16,11 @@ eureka:
 ribbon:
   eureka:
     enabled: true
+  eager-load:
+    enabled: true
+    clients:
+      - userService
+      - orderService
 
 #对userService 服务的请求，进行随机 访问，默认是轮询
 userService:
@@ -26,3 +31,18 @@ userService:
 orderService:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+
+feign:
+  okhttp:
+    enabled: true
+
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+
+logging:
+  level:
+    com.rick: debug
+  config: classpath:logback.xml

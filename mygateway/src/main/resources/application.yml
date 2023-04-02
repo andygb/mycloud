@@ -1,0 +1,37 @@
+server:
+  port: 10010
+
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      routes: #路由规则
+        - id: userapi  #名称唯一即可
+          uri: lb://userService  #lb: 标识 使用loadBalance 去请求 userService（必须为服务在eureka中服务的注册名称）
+          predicates:
+            - Path=/userapi/** #匹配路径，符合此路径 才转发到 userService服务
+
+        - id: orderapi
+          uri: lb://orderService
+          predicates:
+            - Path=/orderapi/**
+
+        - id: tradeapi
+          uri: lb://tradeService
+          predicates:
+            - Path=/tradeapi/**
+
+      default-filters:
+        - StripPrefix=1  #刨除Path匹配到的第一个前缀 比如 orderapi 会被 截取，剩余的路径采取请求orderService
+        #  - Path=/users/**
+        # 如果没有 StripPrefix=1 配置，请求 /userapi/users/1， 会使用全路径去访问use服务，结果就是404
+        # 此时 Path=/uses/1即可请求到user服务接口
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+
